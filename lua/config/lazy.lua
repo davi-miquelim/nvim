@@ -74,10 +74,10 @@ require("lazy").setup({
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "bluz71/vim-moonfly-colors" } },
+  install = { colorscheme = { "scottmckendry/cyberdream.nvim" } },
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
 
-local color = "moonfly"
+local color = "cyberdream"
 vim.cmd.colorscheme(color)
