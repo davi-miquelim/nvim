@@ -79,5 +79,12 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "elixir",
+    callback = function()
+        require("nvim-treesitter.highlight").attach(0, "elixir")
+    end,
+})
+
 local color = "cyberdream"
 vim.cmd.colorscheme(color)
