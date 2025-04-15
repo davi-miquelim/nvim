@@ -24,6 +24,8 @@ return {
       }
     },
     config = function(_, opts)
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
+
       local lspconfig = require("lspconfig")
       local blink = require("blink.cmp")
 
