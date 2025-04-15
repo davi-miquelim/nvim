@@ -22,7 +22,8 @@ return {
         callback = function(args)
           local client = vim.lsp.get_client_by_id(args.data.client_id)
           if not client then return end
-          vim.diagnostic.setqflist()
+          local diagnostic = vim.diagnostic.get(0)
+          vim.diagnostic.setqflist(diagnostic)
 
           if client.supports_method('textDocument/formatting') then
             -- Format the current buffer on save

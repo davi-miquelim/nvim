@@ -16,6 +16,7 @@ return {
       require('telescope').load_extension('fzf')
       local builtin = require('telescope.builtin')
 
+      vim.keymap.set("n", "<space>lq", builtin.quickfix)
       vim.keymap.set("n", "<space>gs", builtin.grep_string)
       vim.keymap.set("n", "<space>gp", builtin.live_grep)
       vim.keymap.set("n", "<space>fh", builtin.help_tags)
