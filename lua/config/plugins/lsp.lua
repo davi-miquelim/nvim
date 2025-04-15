@@ -13,10 +13,25 @@ return {
           },
         },
       },
+      {
+        "saghen/blink.cmp"
+      },
     },
+    opts = {
+      servers = {
+        lua_ls = {},
+        ts_ls = {}
+      }
+    },
+    config = function(_, opts)
+      local lspconfig = require("lspconfig")
+      local blink = require("blink.cmp")
 
-    config = function()
-      require("lspconfig").lua_ls.setup {}
+      for server, config in pairs(opts.servers) do
+        local capabilities = config.capabilities
+        capabilities = blink.get_lsp_capabilities(capabilities)
+        lspconfig[server].setup(config)
+      end
 
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
@@ -25,7 +40,7 @@ return {
           local diagnostic = vim.diagnostic.get(0)
           vim.diagnostic.setqflist(diagnostic)
 
-          if client.supports_method('textDocument/formatting') then
+          if client:supports_method('textDocument/formatting') then
             -- Format the current buffer on save
             vim.api.nvim_create_autocmd('BufWritePre', {
               buffer = args.buf,
