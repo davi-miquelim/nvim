@@ -27,9 +27,9 @@ return {
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, { noremap = true, silent = true, desc = "Go to definition" })
       vim.keymap.set("n", "gr", vim.lsp.buf.references, { noremap = true, silent = true, desc = "Find references" })
       vim.keymap.set("n", "rn", vim.lsp.buf.rename, { noremap = true, silent = true, desc = "Rename symbol" })
-      vim.keymap.set("n", "ca", vim.lsp.buf.code_action, { noremap = true, silent = true, dec = "Code actions" })
+      vim.keymap.set("n", "ca", vim.lsp.buf.code_action, { noremap = true, silent = true, desc = "Code actions" })
       vim.keymap.set("n", "<space>e", function() vim.diagnostic.open_float(nil, { focus = false }) end,
-        { noremap = true, silent = true, dec = "Show diagnostic float" })
+        { noremap = true, silent = true, desc = "Show diagnostic float" })
 
       local lspconfig = require("lspconfig")
       local blink = require("blink.cmp")
