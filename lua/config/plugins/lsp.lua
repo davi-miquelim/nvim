@@ -20,16 +20,16 @@ return {
     opts = {
       servers = {
         lua_ls = {},
-        ts_ls = {
-          on_attach = function(client, bufnr)
-            client.server_capabalities.documentFormattingProvider = false
-            client.server_capabalities.documentRangeFromattingProvider = false
-          end
-        }
+        ts_ls = {}
       }
     },
     config = function(_, opts)
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { noremap = true, silent = true, desc = "Go to definition" })
+      vim.keymap.set("n", "gr", vim.lsp.buf.references, { noremap = true, silent = true, desc = "Find references" })
+      vim.keymap.set("n", "rn", vim.lsp.buf.rename, { noremap = true, silent = true, desc = "Rename symbol" })
+      vim.keymap.set("n", "ca", vim.lsp.buf.code_action, { noremap = true, silent = true, dec = "Code actions" })
+      vim.keymap.set("n", "<space>e", function() vim.diagnostic.open_float(nil, { focus = false }) end,
+        { noremap = true, silent = true, dec = "Show diagnostic float" })
 
       local lspconfig = require("lspconfig")
       local blink = require("blink.cmp")
