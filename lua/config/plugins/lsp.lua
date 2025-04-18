@@ -20,7 +20,8 @@ return {
     opts = {
       servers = {
         lua_ls = {},
-        ts_ls = {}
+        ts_ls = {},
+        asm_lsp = {}
       }
     },
     config = function(_, opts)
