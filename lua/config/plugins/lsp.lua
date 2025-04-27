@@ -21,7 +21,7 @@ return {
       servers = {
         lua_ls = {},
         ts_ls = {},
-        asm_lsp = {}
+        -- asm_lsp = {}
       }
     },
     config = function(_, opts)
