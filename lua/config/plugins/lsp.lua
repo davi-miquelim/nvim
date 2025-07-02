@@ -29,8 +29,14 @@ return {
       vim.keymap.set("n", "gr", vim.lsp.buf.references, { noremap = true, silent = true, desc = "Find references" })
       vim.keymap.set("n", "rn", vim.lsp.buf.rename, { noremap = true, silent = true, desc = "Rename symbol" })
       vim.keymap.set("n", "ca", vim.lsp.buf.code_action, { noremap = true, silent = true, desc = "Code actions" })
+      vim.keymap.set("n", "<space>h", vim.lsp.buf.signature_help,
+        { noremap = true, silent = true, desc = "Signature help" })
       vim.keymap.set("n", "<space>e", function() vim.diagnostic.open_float(nil, { focus = false }) end,
         { noremap = true, silent = true, desc = "Show diagnostic float" })
+
+      vim.api.nvim_create_autocmd({ "CursorHold" }, {
+        callback = function() vim.lsp.buf.signature_help() end
+      })
 
       local lspconfig = require("lspconfig")
       local blink = require("blink.cmp")
@@ -45,8 +51,6 @@ return {
         callback = function(args)
           local client = vim.lsp.get_client_by_id(args.data.client_id)
           if not client then return end
-          local diagnostic = vim.diagnostic.get(0)
-          vim.diagnostic.setqflist(diagnostic)
 
           if client:supports_method('textDocument/formatting') then
             -- Format the current buffer on save
