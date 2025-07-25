@@ -21,6 +21,10 @@ return {
       servers = {
         lua_ls = {},
         ts_ls = {},
+        elixir_ls = {
+          cmd = {"/home/davi/lsp/elixir-ls/release/language_server.sh"},
+          filetypes = {"ex", "exs"},
+        },
         -- asm_lsp = {}
       }
     },
